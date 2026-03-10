@@ -6,15 +6,15 @@ from abc import ABC, abstractmethod
 
 class FareStrategy(ABC):
     @abstractmethod
-    def calculate_fare(self, diatance):
+    def calculate_fare(self, distance):
         pass
 
 
 class NormalFare(FareStrategy):
-    def calculate_fare(self, diatance):
-        return diatance * 10
+    def calculate_fare(self, distance):
+        return distance * 10
 
 
 class SurgeFare(FareStrategy):
-    def calculate_fare(self, diatance):
-        return diatance * 20
+    def calculate_fare(self, distance):
+        return distance * 20
