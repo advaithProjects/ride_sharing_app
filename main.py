@@ -16,9 +16,8 @@ ride_service = RideService(fare_strategy)
 driver1 = Driver("D1", "Advaith", "9441042831")
 ride_service.register_driver(driver1)
 
-
 @app.get("/ride/{ride_id}", response_model=RideResopnce)
-def get_ride(ride_id: int):
+def get_ride(ride_id: str):
     ride = ride_service.get_ride(ride_id)
 
     if not ride:
@@ -45,6 +44,8 @@ def request_ride(request: RideRequest):
         fare=ride.fare,
         status=ride.status,
     )
+
+
 
 
 
