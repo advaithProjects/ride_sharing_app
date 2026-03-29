@@ -8,7 +8,7 @@ class RideRequest(BaseModel):
     distance: float
 
 
-class RideResopnce(BaseModel):
+class RideResopnse(BaseModel):
     ride_id: str
     driver_name: str
     fare: float

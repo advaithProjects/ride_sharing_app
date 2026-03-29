@@ -5,7 +5,7 @@ from models.user import Rider, Driver
 from services.ride_service import RideService
 from services.fare_strategy import NormalFare
 
-from schemas.ride_schema import RideRequest, RideResopnce
+from schemas.ride_schema import RideRequest, RideResopnse
 
 app = FastAPI()
 
@@ -17,7 +17,7 @@ driver1 = Driver("D1", "Advaith", "9441042831")
 ride_service.register_driver(driver1)
 
 
-@app.post("/request-ride", response_model=RideResopnce)
+@app.post("/request-ride", response_model=RideResopnse)
 def request_ride(request: RideRequest):
     rider = Rider(request.ride_id, request.rider_name, request.phone)
     try:
@@ -25,7 +25,7 @@ def request_ride(request: RideRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-    return RideResopnce(
+    return RideResopnse(
         ride_id=ride.ride_id,
         driver_name=ride.driver.name,
         fare=ride.fare,
@@ -33,13 +33,13 @@ def request_ride(request: RideRequest):
     )
 
 
-@app.get("/ride/{ride_id}", response_model=RideResopnce)
+@app.get("/ride/{ride_id}", response_model=RideResopnse)
 def get_ride(ride_id: str):
     ride = ride_service.get_ride(ride_id)
 
     if not ride:
         raise HTTPException(status_code=404, detail="Ride not found")
-    return RideResopnce(
+    return RideResopnse(
         ride_id=ride.ride_id,
         driver_name=ride.driver.name,
         fare=ride.fare,
